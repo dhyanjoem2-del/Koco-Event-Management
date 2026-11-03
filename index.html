@@ -231,6 +231,35 @@
     @keyframes koco-line-in { to { transform:scaleX(1); } }
     @media (prefers-reduced-motion: reduce) { .koco-welcome, .koco-welcome * { animation:none !important; transition:none !important; } .koco-welcome-tagline { opacity:1; } .koco-welcome-line { transform:scaleX(1); } }
 
+    /* Guided event inquiry steps */
+    .form-progress { margin:0 0 25px; }
+    .form-progress-label { display:flex; justify-content:space-between; gap:12px; margin-bottom:9px; color:var(--muted); font-size:10px; font-weight:700; letter-spacing:.7px; text-transform:uppercase; }
+    .form-progress-track { height:4px; overflow:hidden; background:#e9e6dd; }
+    .form-progress-fill { display:block; width:20%; height:100%; background:var(--coral); transition:width .25s ease; }
+    .form-step[hidden] { display:none; }
+    .form-step-heading { margin:0 0 20px; font:500 27px/1.15 var(--serif); }
+    .form-step .choice-group { margin:0 0 22px; }
+    .form-step .field:last-child { margin-bottom:0; }
+    .wizard-actions { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:24px; }
+    .wizard-actions .button { width:auto; min-width:128px; margin:0; border:0; cursor:pointer; }
+    .wizard-back { min-width:100px; border:1px solid var(--line); padding:13px 18px; background:transparent; color:var(--ink); font-size:12px; font-weight:600; cursor:pointer; }
+    .wizard-back:hover { background:var(--cream); }
+    .wizard-back[hidden] { display:none; }
+    .wizard-actions .button:last-child { margin-left:auto; }
+    .celebration-grid .celebration-option { width:100%; }
+    .booking-dialog { width:min(720px, calc(100% - 32px)); }
+    .booking-dialog .dialog-shell { padding:34px; }
+    .booking-dialog .contact-form { padding:0; background:transparent; box-shadow:none; }
+    .booking-dialog .form-progress { position:sticky; top:0; z-index:2; padding:8px 0 10px; background:var(--paper); }
+    .contact-invitation > p:first-child { margin:0 0 22px; color:var(--muted); font-size:13px; line-height:1.7; }
+    .contact-invitation .button { width:100%; }
+    .booking-dialog .dialog-heading { margin-bottom:22px; }
+    @media (max-width:620px) {
+      .wizard-actions { align-items:stretch; }
+      .wizard-actions .button, .wizard-back { flex:1; min-width:0; }
+      .form-step-heading { font-size:24px; }
+      .booking-dialog .dialog-shell { padding:34px 20px 22px; }
+    }
   </style>
 </head>
 <body>
@@ -289,53 +318,11 @@
     <section class="contact section" id="contact">
       <div class="wrap contact-layout">
         <div><div class="eyebrow">Your turn</div><h2>Have a good feeling about this?</h2><p class="section-intro">Tell us what you’re dreaming up. We’ll bring the coffee, ask the right questions, and start imagining together.</p><a class="text-link" href="#home">Back to the top <span>↑</span></a></div>
-        <form class="contact-form" id="contact-form">
-          <div class="field"><label for="name">Your name</label><input id="name" name="name" placeholder="What should we call you?" required /></div>
-          <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" placeholder="you@example.com" required /></div>
-          <div class="field"><label for="event-type">Select your program</label><select id="event-type" name="eventType" required><option value="" disabled selected>Choose an event type</option><option>Anniversary</option><option>Birthday</option><option>Baptism</option><option>Engagement party</option><option>Baby shower</option><option>Graduation</option><option>Family reunion</option><option>Holiday party</option><option>Corporate event</option><option>Conference or workshop</option><option>Launch night</option><option>Product launch</option><option>Brand activation</option><option>Press preview</option><option>Influencer event</option><option>Pop-up experience</option><option>Client appreciation event</option><option>Team celebration</option><option>Other brand moment</option><option>Concert or live show</option><option>Private dinner</option><option>Festival or community event</option><option>Other</option></select></div>
-          <div class="field"><label for="event-date">Event date</label><input id="event-date" name="eventDate" type="date" /></div>
-          <div class="field"><label for="event-time">Start time</label><input id="event-time" name="eventTime" type="time" /></div>
-          <div class="field"><label for="event-place">Place or venue</label><input id="event-place" name="eventPlace" placeholder="Venue, city, or still deciding" /></div>
-          <fieldset class="choice-group"><legend>What style do you have in mind?</legend><div class="check-grid">
-            <label class="check-option"><input type="checkbox" name="style[]" value="Traditional"> Traditional</label>
-            <label class="check-option"><input type="checkbox" name="style[]" value="Modern"> Modern</label>
-            <label class="check-option"><input type="checkbox" name="style[]" value="Elegant"> Elegant</label>
-            <label class="check-option"><input type="checkbox" name="style[]" value="Minimal"> Minimal</label>
-            <label class="check-option"><input type="checkbox" name="style[]" value="Colorful and playful"> Colorful &amp; playful</label>
-            <label class="check-option"><input type="checkbox" name="style[]" value="Cultural"> Cultural</label>
-            <label class="check-option"><input type="checkbox" name="style[]" value="Relaxed and casual"> Relaxed &amp; casual</label>
-            <label class="check-option"><input type="checkbox" name="style[]" value="Not sure yet"> Not sure yet</label>
-          </div></fieldset>
-          <fieldset class="choice-group include-banner"><legend>What would you like included?</legend><div class="check-grid">
-            <label class="check-option"><input type="checkbox" name="want[]" value="Speakers or performers"> Speakers or performers</label>
-            <label class="check-option"><input type="checkbox" name="want[]" value="Food and drinks"> Food &amp; drinks</label>
-            <label class="check-option"><input type="checkbox" name="want[]" value="Anchor or host"> Anchor / host</label>
-            <label class="check-option"><input type="checkbox" name="want[]" value="Entry or grand entrance"> Entry / grand entrance</label>
-            <label class="check-option"><input type="checkbox" name="want[]" value="Microphones and sound"> Microphones &amp; sound</label>
-            <label class="check-option"><input type="checkbox" name="want[]" value="Music or DJ"> Music / DJ</label>
-            <label class="check-option"><input type="checkbox" name="want[]" value="Games and challenges"> Games &amp; challenges</label>
-            <label class="check-option"><input type="checkbox" name="want[]" value="Stage and lighting"> Stage &amp; lighting</label>
-            <label class="check-option"><input type="checkbox" name="want[]" value="Photography or video"> Photography / video</label>
-            <label class="check-option"><input type="checkbox" name="want[]" value="Decor and flowers"> Decor &amp; flowers</label>
-            <label class="check-option"><input type="checkbox" name="want[]" value="Other"> Something else</label>
-          </div></fieldset>
-          <fieldset class="choice-group exclude-banner"><legend>What would you prefer we leave out?</legend><div class="check-grid">
-            <label class="check-option"><input type="checkbox" name="avoid[]" value="Speakers or performers"> Speakers or performers</label>
-            <label class="check-option"><input type="checkbox" name="avoid[]" value="Food and drinks"> Food &amp; drinks</label>
-            <label class="check-option"><input type="checkbox" name="avoid[]" value="Anchor or host"> Anchor / host</label>
-            <label class="check-option"><input type="checkbox" name="avoid[]" value="Entry or grand entrance"> Entry / grand entrance</label>
-            <label class="check-option"><input type="checkbox" name="avoid[]" value="Microphones and sound"> Microphones &amp; sound</label>
-            <label class="check-option"><input type="checkbox" name="avoid[]" value="Music or DJ"> Music / DJ</label>
-            <label class="check-option"><input type="checkbox" name="avoid[]" value="Games and challenges"> Games &amp; challenges</label>
-            <label class="check-option"><input type="checkbox" name="avoid[]" value="Stage and lighting"> Stage &amp; lighting</label>
-            <label class="check-option"><input type="checkbox" name="avoid[]" value="Photography or video"> Photography / video</label>
-            <label class="check-option"><input type="checkbox" name="avoid[]" value="Decor and flowers"> Decor &amp; flowers</label>
-            <label class="check-option"><input type="checkbox" name="avoid[]" value="Other"> Something else</label>
-          </div></fieldset>
-          <div class="field"><label for="event">Anything else we should know?</label><textarea id="event" name="event" placeholder="Share any other wishes or details..." required></textarea></div>
-          <button class="button" type="submit">Send a little hello <span>↗</span></button>
-          <p class="form-note">Submit to open WhatsApp with your event details ready to send.</p>
-        </form>
+        <div class="contact-form contact-invitation">
+          <p>Tell us a little about the gathering you have in mind. We’ll take it one step at a time.</p>
+          <button class="button" id="contact-open-booking" type="button">Start planning <span>↗</span></button>
+          <p class="form-note">A few quick steps to help us picture your event.</p>
+        </div>
       </div>
     </section>
   </main>
@@ -365,25 +352,83 @@
         <button class="celebration-option" type="button" data-event-category="brand" data-event-type="Team celebration" hidden><span class="celebration-number">09</span><span class="celebration-copy"><strong>Team celebration</strong><small>Make a moment for your people</small></span><span class="celebration-arrow">↗</span></button>
         <button class="celebration-option" type="button" data-event-category="brand" data-event-type="Other brand moment" hidden><span class="celebration-number">10</span><span class="celebration-copy"><strong>Another brand moment</strong><small>Tell us what you have in mind</small></span><span class="celebration-arrow">↗</span></button>
       </div>
-      <div class="dialog-bottom"><p id="celebration-selection" aria-live="polite">Choose a box to start planning.</p><button class="button" id="plan-celebration" type="button" disabled>Plan this celebration <span>↗</span></button></div>
+      <div class="dialog-bottom"><p id="celebration-selection" aria-live="polite">Choose an event type to continue to the planning form.</p></div>
     </div>
   </dialog>
-  <dialog class="celebration-dialog" id="brand-dialog" aria-labelledby="brand-title" aria-describedby="brand-description">
+  <dialog class="celebration-dialog booking-dialog" id="booking-dialog" aria-labelledby="booking-title" aria-describedby="booking-description">
     <div class="dialog-shell">
-      <button class="dialog-close" id="brand-dialog-close" type="button" aria-label="Close brand event options">×</button>
-      <div class="dialog-heading"><div class="eyebrow">For brands &amp; teams</div><h2 id="brand-title">What are we bringing to life?</h2><p id="brand-description">Choose one or more brand events and we’ll help make them memorable for your audience.</p></div>
-      <div class="celebration-grid" id="brand-grid" role="group" aria-label="Brand event types">
-        <button class="celebration-option" type="button" data-brand-type="Launch night" aria-pressed="false"><span class="celebration-number">01</span><span class="celebration-copy"><strong>Launch night</strong><small>Celebrate a new idea</small></span><span class="celebration-arrow">＋</span></button>
-        <button class="celebration-option" type="button" data-brand-type="Brand promotion" aria-pressed="false"><span class="celebration-number">02</span><span class="celebration-copy"><strong>Brand promotion</strong><small>Bring your brand to life</small></span><span class="celebration-arrow">＋</span></button>
-        <button class="celebration-option" type="button" data-brand-type="Product launch" aria-pressed="false"><span class="celebration-number">03</span><span class="celebration-copy"><strong>Product launch</strong><small>Introduce something new</small></span><span class="celebration-arrow">＋</span></button>
-        <button class="celebration-option" type="button" data-brand-type="Corporate event" aria-pressed="false"><span class="celebration-number">04</span><span class="celebration-copy"><strong>Corporate event</strong><small>Gather your team or partners</small></span><span class="celebration-arrow">＋</span></button>
-        <button class="celebration-option" type="button" data-brand-type="Company anniversary" aria-pressed="false"><span class="celebration-number">05</span><span class="celebration-copy"><strong>Company anniversary</strong><small>Celebrate how far you’ve come</small></span><span class="celebration-arrow">＋</span></button>
-        <button class="celebration-option" type="button" data-brand-type="Networking event" aria-pressed="false"><span class="celebration-number">06</span><span class="celebration-copy"><strong>Networking event</strong><small>Make meaningful connections</small></span><span class="celebration-arrow">＋</span></button>
-        <button class="celebration-option" type="button" data-brand-type="Press event" aria-pressed="false"><span class="celebration-number">07</span><span class="celebration-copy"><strong>Press event</strong><small>Share your story with the media</small></span><span class="celebration-arrow">＋</span></button>
-        <button class="celebration-option" type="button" data-brand-type="Store opening" aria-pressed="false"><span class="celebration-number">08</span><span class="celebration-copy"><strong>Store opening</strong><small>Open your doors with a moment</small></span><span class="celebration-arrow">＋</span></button>
-        <button class="celebration-option" type="button" data-brand-type="Other brand event" aria-pressed="false"><span class="celebration-number">09</span><span class="celebration-copy"><strong>Other brand event</strong><small>Tell us what you have in mind</small></span><span class="celebration-arrow">＋</span></button>
-      </div>
-      <div class="dialog-bottom"><p id="brand-selection" aria-live="polite">Choose one or more brand events.</p><button class="button" id="plan-brand-event" type="button" disabled>Plan this brand event <span>↗</span></button></div>
+      <button class="dialog-close" id="booking-dialog-close" type="button" aria-label="Close event planning form">×</button>
+      <div class="dialog-heading"><div class="eyebrow">Your turn</div><h2 id="booking-title">Let’s plan something good.</h2><p id="booking-description">A few quick steps, all in one place.</p></div>
+      <form class="contact-form" id="contact-form">
+        <div class="form-progress" aria-live="polite">
+          <div class="form-progress-label"><span id="form-step-label">Step 1 of 5 · Event details</span><span id="form-step-percent">20%</span></div>
+          <div class="form-progress-track" aria-hidden="true"><span class="form-progress-fill" id="form-progress-fill"></span></div>
+        </div>
+        <section class="form-step" data-form-step="0" aria-labelledby="step-title-0">
+          <h3 class="form-step-heading" id="step-title-0">Let’s start with the details.</h3>
+          <div class="field"><label for="name">Your name</label><input id="name" name="name" placeholder="What should we call you?" autocomplete="name" required /></div>
+          <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required /></div>
+          <div class="field"><label for="event-type">Select your program</label><select id="event-type" name="eventType" required><option value="" disabled selected>Choose an event type</option><option>Anniversary</option><option>Birthday</option><option>Baptism</option><option>Engagement party</option><option>Baby shower</option><option>Graduation</option><option>Family reunion</option><option>Holiday party</option><option>Corporate event</option><option>Conference or workshop</option><option>Launch night</option><option>Product launch</option><option>Brand activation</option><option>Press preview</option><option>Influencer event</option><option>Pop-up experience</option><option>Client appreciation event</option><option>Team celebration</option><option>Other brand moment</option><option>Concert or live show</option><option>Private dinner</option><option>Festival or community event</option><option>Other</option></select></div>
+          <div class="field"><label for="event-date">Event date</label><input id="event-date" name="eventDate" type="date" /></div>
+          <div class="field"><label for="event-time">Start time</label><input id="event-time" name="eventTime" type="time" /></div>
+          <div class="field"><label for="event-place">Place or venue</label><input id="event-place" name="eventPlace" placeholder="Venue, city, or still deciding" /></div>
+          <div class="wizard-actions"><button class="button" type="button" data-wizard-next>Continue <span>↗</span></button></div>
+        </section>
+        <section class="form-step" data-form-step="1" aria-labelledby="step-title-1" hidden>
+          <h3 class="form-step-heading" id="step-title-1">What style do you have in mind?</h3>
+          <fieldset class="choice-group"><legend>Choose any that feel right</legend><div class="check-grid">
+            <label class="check-option"><input type="checkbox" name="style[]" value="Traditional"> Traditional</label>
+            <label class="check-option"><input type="checkbox" name="style[]" value="Modern"> Modern</label>
+            <label class="check-option"><input type="checkbox" name="style[]" value="Elegant"> Elegant</label>
+            <label class="check-option"><input type="checkbox" name="style[]" value="Minimal"> Minimal</label>
+            <label class="check-option"><input type="checkbox" name="style[]" value="Colorful and playful"> Colorful &amp; playful</label>
+            <label class="check-option"><input type="checkbox" name="style[]" value="Cultural"> Cultural</label>
+            <label class="check-option"><input type="checkbox" name="style[]" value="Relaxed and casual"> Relaxed &amp; casual</label>
+            <label class="check-option"><input type="checkbox" name="style[]" value="Not sure yet"> Not sure yet</label>
+          </div></fieldset>
+          <div class="wizard-actions"><button class="wizard-back" type="button" data-wizard-back>← Back</button><button class="button" type="button" data-wizard-next>Continue <span>↗</span></button></div>
+        </section>
+        <section class="form-step" data-form-step="2" aria-labelledby="step-title-2" hidden>
+          <h3 class="form-step-heading" id="step-title-2">What would you like included?</h3>
+          <fieldset class="choice-group include-banner"><legend>Choose anything you’d love</legend><div class="check-grid">
+            <label class="check-option"><input type="checkbox" name="want[]" value="Speakers or performers"> Speakers or performers</label>
+            <label class="check-option"><input type="checkbox" name="want[]" value="Food and drinks"> Food &amp; drinks</label>
+            <label class="check-option"><input type="checkbox" name="want[]" value="Anchor or host"> Anchor / host</label>
+            <label class="check-option"><input type="checkbox" name="want[]" value="Entry or grand entrance"> Entry / grand entrance</label>
+            <label class="check-option"><input type="checkbox" name="want[]" value="Microphones and sound"> Microphones &amp; sound</label>
+            <label class="check-option"><input type="checkbox" name="want[]" value="Music or DJ"> Music / DJ</label>
+            <label class="check-option"><input type="checkbox" name="want[]" value="Games and challenges"> Games &amp; challenges</label>
+            <label class="check-option"><input type="checkbox" name="want[]" value="Stage and lighting"> Stage &amp; lighting</label>
+            <label class="check-option"><input type="checkbox" name="want[]" value="Photography or video"> Photography / video</label>
+            <label class="check-option"><input type="checkbox" name="want[]" value="Decor and flowers"> Decor &amp; flowers</label>
+            <label class="check-option"><input type="checkbox" name="want[]" value="Other"> Something else</label>
+          </div></fieldset>
+          <div class="wizard-actions"><button class="wizard-back" type="button" data-wizard-back>← Back</button><button class="button" type="button" data-wizard-next>Continue <span>↗</span></button></div>
+        </section>
+        <section class="form-step" data-form-step="3" aria-labelledby="step-title-3" hidden>
+          <h3 class="form-step-heading" id="step-title-3">What would you prefer we leave out?</h3>
+          <fieldset class="choice-group exclude-banner"><legend>We’ll take note</legend><div class="check-grid">
+            <label class="check-option"><input type="checkbox" name="avoid[]" value="Speakers or performers"> Speakers or performers</label>
+            <label class="check-option"><input type="checkbox" name="avoid[]" value="Food and drinks"> Food &amp; drinks</label>
+            <label class="check-option"><input type="checkbox" name="avoid[]" value="Anchor or host"> Anchor / host</label>
+            <label class="check-option"><input type="checkbox" name="avoid[]" value="Entry or grand entrance"> Entry / grand entrance</label>
+            <label class="check-option"><input type="checkbox" name="avoid[]" value="Microphones and sound"> Microphones &amp; sound</label>
+            <label class="check-option"><input type="checkbox" name="avoid[]" value="Music or DJ"> Music / DJ</label>
+            <label class="check-option"><input type="checkbox" name="avoid[]" value="Games and challenges"> Games &amp; challenges</label>
+            <label class="check-option"><input type="checkbox" name="avoid[]" value="Stage and lighting"> Stage &amp; lighting</label>
+            <label class="check-option"><input type="checkbox" name="avoid[]" value="Photography or video"> Photography / video</label>
+            <label class="check-option"><input type="checkbox" name="avoid[]" value="Decor and flowers"> Decor &amp; flowers</label>
+            <label class="check-option"><input type="checkbox" name="avoid[]" value="Other"> Something else</label>
+          </div></fieldset>
+          <div class="wizard-actions"><button class="wizard-back" type="button" data-wizard-back>← Back</button><button class="button" type="button" data-wizard-next>Continue <span>↗</span></button></div>
+        </section>
+        <section class="form-step" data-form-step="4" aria-labelledby="step-title-4" hidden>
+          <h3 class="form-step-heading" id="step-title-4">Anything else we should know?</h3>
+          <div class="field"><label for="event">Share any wishes or details</label><textarea id="event" name="event" placeholder="A little more about what you’re imagining..."></textarea></div>
+          <div class="wizard-actions"><button class="wizard-back" type="button" data-wizard-back>← Back</button><button class="button" type="submit">Send a little hello <span>↗</span></button></div>
+          <p class="form-note">Your details will open in WhatsApp, ready for you to send to Koco.</p>
+        </section>
+      </form>
     </div>
   </dialog>
   <footer><div class="wrap footer-row"><a class="logo footer-logo" href="#home"><span class="logo-mark" aria-hidden="true"></span><span class="logo-word">koco</span></a><span>Gather well. Make it matter. © <span id="year"></span> Koco</span><div class="footer-links"><a href="#services">Services</a><a href="#work">Our work</a><a href="#contact">Say hello</a></div></div></footer>
@@ -426,14 +471,50 @@
       menuButton.textContent = '☰';
     }));
     document.getElementById('year').textContent = new Date().getFullYear();
-    document.getElementById('contact-form').addEventListener('submit', event => {
+    const contactForm = document.getElementById('contact-form');
+    const formSteps = [...contactForm.querySelectorAll('[data-form-step]')];
+    const stepLabels = ['Event details', 'Style', 'Included', 'Leave out', 'Finishing touches'];
+    const formStepLabel = document.getElementById('form-step-label');
+    const formStepPercent = document.getElementById('form-step-percent');
+    const formProgressFill = document.getElementById('form-progress-fill');
+    const eventTypeField = document.getElementById('event-type');
+    const bookingDialog = document.getElementById('booking-dialog');
+    let currentFormStep = 0;
+
+    function showFormStep(step, shouldFocus = false) {
+      currentFormStep = Math.max(0, Math.min(step, formSteps.length - 1));
+      formSteps.forEach((panel, index) => { panel.hidden = index !== currentFormStep; });
+      const progress = Math.round(((currentFormStep + 1) / formSteps.length) * 100);
+      formStepLabel.textContent = `Step ${currentFormStep + 1} of ${formSteps.length} · ${stepLabels[currentFormStep]}`;
+      formStepPercent.textContent = `${progress}%`;
+      formProgressFill.style.width = `${progress}%`;
+      bookingDialog.scrollTop = 0;
+      if (shouldFocus) {
+        const firstControl = formSteps[currentFormStep].querySelector('input, select, textarea');
+        if (firstControl) window.setTimeout(() => firstControl.focus({ preventScroll: true }), 250);
+      }
+    }
+
+    contactForm.querySelectorAll('[data-wizard-next]').forEach(button => button.addEventListener('click', () => {
+      const visibleFields = [...formSteps[currentFormStep].querySelectorAll('input, select, textarea')];
+      const invalidField = visibleFields.find(field => !field.checkValidity());
+      if (invalidField) {
+        invalidField.reportValidity();
+        return;
+      }
+      showFormStep(currentFormStep + 1, true);
+    }));
+    contactForm.querySelectorAll('[data-wizard-back]').forEach(button => button.addEventListener('click', () => {
+      showFormStep(currentFormStep - 1, true);
+    }));
+
+    contactForm.addEventListener('submit', event => {
       event.preventDefault();
-      if (!event.currentTarget.reportValidity()) return;
-      const form = event.currentTarget;
-      const formData = new FormData(form);
-      const styles = [...form.querySelectorAll('input[name="style[]"]:checked')].map(input => input.value);
-      const included = [...form.querySelectorAll('input[name="want[]"]:checked')].map(input => input.value);
-      const excluded = [...form.querySelectorAll('input[name="avoid[]"]:checked')].map(input => input.value);
+      if (!contactForm.reportValidity()) return;
+      const formData = new FormData(contactForm);
+      const styles = [...contactForm.querySelectorAll('input[name="style[]"]:checked')].map(input => input.value);
+      const included = [...contactForm.querySelectorAll('input[name="want[]"]:checked')].map(input => input.value);
+      const excluded = [...contactForm.querySelectorAll('input[name="avoid[]"]:checked')].map(input => input.value);
       const message = [
         'Hello Koco! I would like to plan an event.',
         `Name: ${formData.get('name')}`,
@@ -445,139 +526,77 @@
         styles.length ? `Style: ${styles.join(', ')}` : '',
         included.length ? `Would like included: ${included.join(', ')}` : '',
         excluded.length ? `Prefer to leave out: ${excluded.join(', ')}` : '',
-        `Details: ${formData.get('event')}`
+        formData.get('event') ? `Details: ${formData.get('event')}` : ''
       ].filter(Boolean).join('\n');
       const whatsappUrl = `https://wa.me/919400947103?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
     });
+
     const celebrationDialog = document.getElementById('celebration-dialog');
     const celebrationCards = [...document.querySelectorAll('[data-celebration-card]')];
-    const celebrationOptions = [...document.querySelectorAll('.celebration-option')];
-    const celebrationSelection = document.getElementById('celebration-selection');
-    const planCelebrationButton = document.getElementById('plan-celebration');
-    const eventTypeField = document.getElementById('event-type');
+    const celebrationOptions = [...document.querySelectorAll('[data-event-type]')];
     const dialogEyebrow = document.getElementById('dialog-eyebrow');
     const dialogTitle = document.getElementById('celebration-title');
     const dialogDescription = document.getElementById('celebration-description');
     const dialogGrid = document.getElementById('celebration-grid');
-    let selectedCelebrations = [];
 
     function openCelebrationDialog(card) {
       const isBrandEvent = card.dataset.guideCategory === 'brand';
       const category = isBrandEvent ? 'brand' : 'celebration';
-      selectedCelebrations = [];
-      celebrationOptions.forEach(option => {
-        option.hidden = option.dataset.eventCategory !== category;
-        option.classList.remove('selected');
-        option.setAttribute('aria-pressed', 'false');
-      });
+      celebrationOptions.forEach(option => { option.hidden = option.dataset.eventCategory !== category; });
       dialogEyebrow.textContent = isBrandEvent ? 'For brands & teams' : 'A good reason to gather';
       dialogTitle.textContent = isBrandEvent ? 'What are we bringing to life?' : 'What are we celebrating?';
       dialogDescription.textContent = isBrandEvent
-        ? 'Choose a brand moment and we’ll help make it memorable for your audience.'
-        : 'Choose a kind of party and we’ll help make it feel like yours.';
+        ? 'Choose a brand moment to start planning the details.'
+        : 'Choose a celebration to start planning the details.';
       dialogGrid.setAttribute('aria-label', isBrandEvent ? 'Brand event types' : 'Celebration types');
-      celebrationSelection.textContent = isBrandEvent ? 'Choose one or more brand moments.' : 'Choose one or more celebrations.';
-      planCelebrationButton.disabled = true;
       celebrationDialog.showModal();
     }
 
-    const brandDialog = document.getElementById('brand-dialog');
-    const brandOptions = [...document.querySelectorAll('[data-brand-type]')];
-    const brandSelection = document.getElementById('brand-selection');
-    const planBrandButton = document.getElementById('plan-brand-event');
-    let selectedBrandEvents = [];
-
-    function openBrandDialog() {
-      selectedBrandEvents = [];
-      brandOptions.forEach(option => {
-        option.classList.remove('selected');
-        option.setAttribute('aria-pressed', 'false');
-      });
-      brandSelection.textContent = 'Choose one or more brand events.';
-      planBrandButton.disabled = true;
-      brandDialog.showModal();
+    function startPlanning(eventType) {
+      let option = [...eventTypeField.options].find(item => item.value === eventType);
+      if (!option) {
+        option = document.createElement('option');
+        option.value = eventType;
+        option.textContent = eventType;
+        eventTypeField.appendChild(option);
+      }
+      eventTypeField.value = eventType;
+      celebrationDialog.close();
+      showFormStep(0, false);
+      document.getElementById('booking-title').textContent = `Let’s plan your ${eventType.toLowerCase()}.`;
+      document.getElementById('booking-description').textContent = 'Add a few details, then move through each step in this window.';
+      bookingDialog.showModal();
+      window.setTimeout(() => document.getElementById('name').focus({ preventScroll: true }), 250);
     }
 
+    document.getElementById('contact-open-booking').addEventListener('click', () => {
+      document.getElementById('booking-title').textContent = 'Let’s plan something good.';
+      document.getElementById('booking-description').textContent = 'A few quick steps, all in one place.';
+      showFormStep(0, false);
+      bookingDialog.showModal();
+      window.setTimeout(() => document.getElementById('name').focus({ preventScroll: true }), 250);
+    });
+    document.getElementById('booking-dialog-close').addEventListener('click', () => bookingDialog.close());
+    bookingDialog.addEventListener('click', event => {
+      if (event.target === bookingDialog) bookingDialog.close();
+    });
+
     celebrationCards.forEach(card => {
-      const openCardDialog = () => card.dataset.guideCategory === 'brand' ? openBrandDialog() : openCelebrationDialog(card);
-      card.addEventListener('click', openCardDialog);
+      card.addEventListener('click', () => openCelebrationDialog(card));
       card.addEventListener('keydown', event => {
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault();
-          openCardDialog();
+          openCelebrationDialog(card);
         }
       });
     });
-
-    brandOptions.forEach(option => option.addEventListener('click', () => {
-      const value = option.dataset.brandType;
-      selectedBrandEvents = selectedBrandEvents.includes(value)
-        ? selectedBrandEvents.filter(item => item !== value)
-        : [...selectedBrandEvents, value];
-      const selected = selectedBrandEvents.includes(value);
-      option.classList.toggle('selected', selected);
-      option.setAttribute('aria-pressed', String(selected));
-      brandSelection.textContent = selectedBrandEvents.length
-        ? `${selectedBrandEvents.length} selected: ${selectedBrandEvents.join(', ')}`
-        : 'Choose one or more brand events.';
-      planBrandButton.disabled = selectedBrandEvents.length === 0;
-    }));
-
-    document.getElementById('brand-dialog-close').addEventListener('click', () => brandDialog.close());
-    brandDialog.addEventListener('click', event => {
-      if (event.target === brandDialog) brandDialog.close();
-    });
-    planBrandButton.addEventListener('click', () => {
-      if (!selectedBrandEvents.length) return;
-      const combined = selectedBrandEvents.join(', ');
-      let option = [...eventTypeField.options].find(item => item.value === combined);
-      if (!option) {
-        option = document.createElement('option');
-        option.value = combined;
-        option.textContent = combined;
-        eventTypeField.appendChild(option);
-      }
-      eventTypeField.value = combined;
-      brandDialog.close();
-      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-      window.setTimeout(() => eventTypeField.focus({ preventScroll: true }), 450);
-    });
-
-    celebrationOptions.forEach(option => option.addEventListener('click', () => {
-      const value = option.dataset.eventType;
-      if (selectedCelebrations.includes(value)) {
-        selectedCelebrations = selectedCelebrations.filter(item => item !== value);
-      } else {
-        selectedCelebrations.push(value);
-      }
-      option.classList.toggle('selected', selectedCelebrations.includes(value));
-      option.setAttribute('aria-pressed', String(selectedCelebrations.includes(value)));
-      celebrationSelection.textContent = selectedCelebrations.length
-        ? `${selectedCelebrations.length} selected: ${selectedCelebrations.join(', ')}`
-        : 'Choose one or more celebrations.';
-      planCelebrationButton.disabled = selectedCelebrations.length === 0;
-    }));
-
+    celebrationOptions.forEach(option => option.addEventListener('click', () => startPlanning(option.dataset.eventType)));
     document.querySelector('.dialog-close').addEventListener('click', () => celebrationDialog.close());
     celebrationDialog.addEventListener('click', event => {
       if (event.target === celebrationDialog) celebrationDialog.close();
     });
-    planCelebrationButton.addEventListener('click', () => {
-      if (!selectedCelebrations.length) return;
-      const combined = selectedCelebrations.join(', ');
-      let option = [...eventTypeField.options].find(item => item.value === combined);
-      if (!option) {
-        option = document.createElement('option');
-        option.value = combined;
-        option.textContent = combined;
-        eventTypeField.appendChild(option);
-      }
-      eventTypeField.value = combined;
-      celebrationDialog.close();
-      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-      window.setTimeout(() => eventTypeField.focus({ preventScroll: true }), 450);
-    });
+    showFormStep(0);
     const guideToggle = document.getElementById('guide-toggle');
     const guideWindow = document.getElementById('guide-window');
     const guideClose = document.getElementById('guide-close');
@@ -656,9 +675,6 @@
       if (event.key === 'Escape' && guideWindow.classList.contains('open')) setGuideOpen(false);
     });
   </script>
-
-
-
 
   <script>
     // Show the welcome logo briefly, then fade into the main KOCO website.
